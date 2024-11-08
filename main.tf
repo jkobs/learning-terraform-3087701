@@ -3,7 +3,7 @@ data "aws_ami" "app_ami" {
 
   filter {
     name   = "name"
-    values = [var.ami_filter.name]
+    values = var.ami_filter.name
   }
 
   filter {
@@ -11,7 +11,7 @@ data "aws_ami" "app_ami" {
     values = ["hvm"]
   }
 
-  owners = [var.ami_filter.owner]
+  owners = var.ami_filter.owner
 }
 
 data "aws_vpc" "default" {
@@ -21,7 +21,7 @@ data "aws_vpc" "default" {
 module "blog_vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = [var.environment.name]
+  name = var.environment.name
   cidr = "${var.environment.network_prefix}.0.0/16"
 
   azs             = ["us-east-2a", "us-east-2b", "us-east-2c"]
