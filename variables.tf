@@ -25,10 +25,10 @@ variable "environment" {
     network_prefix = string
   })
 
-  default = [
+  default = {
     name           = "dev"
     network_prefix = "10.0"
-  ]
+  }
 }
 
 variable "asg_min_size" {
